@@ -35,6 +35,9 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id') // Add this line to display the `id` field
+                ->label('ID')      // Optional: Set a custom label
+                ->sortable(),      // Optional: Allow sorting by ID
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_featured')
