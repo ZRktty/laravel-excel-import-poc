@@ -22,3 +22,5 @@ Route::get('/tree', [DevController::class, 'tree']);
 //route to attachCategoryToProduct
 Route::get('/attach-category-to-product/{productId}/{categoryId}', [DevController::class, 'attachCategoryToProduct']);
 
+//route to import
+Route::post('/import', [DevController::class, 'import']);
