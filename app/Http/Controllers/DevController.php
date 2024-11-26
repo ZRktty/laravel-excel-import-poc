@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ProductsImport;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Rinvex\Categories\Models\Category;
 
 class DevController extends Controller
@@ -97,6 +99,26 @@ class DevController extends Controller
         // Single category id
         $product->attachCategories($category->id);
         return response()->json($product);
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            // Validate the request to ensure a file is provided
+            $request->validate([
+                'file' => 'required|file|mimes:xlsx',
+            ]);
+
+            // Retrieve the file from the request
+            $file = $request->file('file');
+
+            // Import the file using Laravel Excel
+            Excel::import(new ProductsImport, $file);
+
+            return response()->json(['message' => 'File imported successfully']);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
+        }
     }
 
 
