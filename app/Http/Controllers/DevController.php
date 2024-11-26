@@ -101,6 +101,7 @@ class DevController extends Controller
         return response()->json($product);
     }
 
+    // import method to simply upload XLSX file with post request trough Postman
     public function import(Request $request)
     {
         try {
@@ -113,7 +114,7 @@ class DevController extends Controller
             $file = $request->file('file');
 
             // Import the file using Laravel Excel
-            Excel::import(new ProductsImport, $file);
+            Excel::import(new ProductsImport, $file, null, \Maatwebsite\Excel\Excel::XLSX);
 
             return response()->json(['message' => 'File imported successfully']);
         } catch (\Illuminate\Validation\ValidationException $e) {
