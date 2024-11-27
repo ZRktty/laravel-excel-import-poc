@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Brand;
 use App\Models\Product;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -13,7 +14,7 @@ use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Row;
 
 
-class ProductsImport implements  WithUpserts,SkipsEmptyRows, OnEachRow, WithHeadingRow, WithChunkReading
+class ProductsImport implements  WithUpserts,SkipsEmptyRows, OnEachRow, WithHeadingRow, WithChunkReading, ShouldQueue
 {
     use Importable;
 
