@@ -10,5 +10,7 @@
 - [x] A product can be in multiple categories (many to many) 
             - pivot table: category_product   
 - [x] Import products from Excel file (1. install and configure LaravelExcel, simple file upload trough DevController /import route;)
-- [ ] Add queued import capability (2. add queue to import job db/horizon)
-- [ ] Test: import with large number 10K products (3. create test Excel file with 10K products)
+- [x] Add queued import capability (2. add queue to import job db/horizon)
+- [x] Test: import with large number 10K products (3. create test Excel file with 10K products), tested with 7830 products wihtout images and category imports
+- [ ] Add category import
+- [ ] Add image import: import images from URL (it should put into a seperate lower prio queue)

@@ -61,5 +61,12 @@ To run the project, you need to ensure the following steps are completed:
    ```bash
    npm run dev
    ```
+   
+7. Add user with Filament
+    ```
+    php artisan make:filament-user
+    ```
+   
+8. Login at `localhost/admin`
 
 These steps should help you set up and run the project successfully.
