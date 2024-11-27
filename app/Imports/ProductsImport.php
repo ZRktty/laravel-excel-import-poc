@@ -40,10 +40,7 @@ class ProductsImport implements  WithUpserts,SkipsEmptyRows, OnEachRow, WithHead
 
     public function onRow(Row $row)
     {
-        $rowIndex = $row->getIndex();
         $row = $row->toArray();
-        echo '<pre>RowIndex: ' . $rowIndex . '</pre>';
-        //echo '<pre>' . var_dump($row) . '</pre>';
 
         try {
             if (self::to_save($row)) {
