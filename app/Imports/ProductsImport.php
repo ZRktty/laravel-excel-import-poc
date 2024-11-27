@@ -35,29 +35,20 @@ class ProductsImport implements  WithUpserts,SkipsEmptyRows, OnEachRow, WithHead
 
     public function chunkSize(): int
     {
-        return 1000;
+        return 500;
     }
 
     public function onRow(Row $row)
     {
         $rowIndex = $row->getIndex();
-        echo "___" . microtime() . "\n\r";
         $row = $row->toArray();
-        echo '<pre>' . $rowIndex . '</pre>';
-        echo '<pre>' . var_dump($row) . '</pre>';
-
-        // write $row to console
-
-
+        echo '<pre>RowIndex: ' . $rowIndex . '</pre>';
+        //echo '<pre>' . var_dump($row) . '</pre>';
 
         try {
             if (self::to_save($row)) {
                 $this->saveProduct($row, self::is_active($row));
             }
-
-//            if (self::to_delete($row)) {
-//                $this->delete_product($row);
-//            }
 
         } catch (\Exception $e) {
             echo($e->getMessage());
@@ -120,11 +111,8 @@ class ProductsImport implements  WithUpserts,SkipsEmptyRows, OnEachRow, WithHead
 
         $this->handleBrand($row, $product);
 
-        /** Save the product.
-         */
         $product->save();
-        echo "\n\rTERMÉK mentes>\n\r";
-        echo json_encode($product->toArray());
+        return $product;
 
     }
 
