@@ -95,6 +95,9 @@ class ProductResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
+            ->paginated([10, 25, 50, 100])
+            ->defaultPaginationPageOption(25)
+            ->extremePaginationLinks()
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
