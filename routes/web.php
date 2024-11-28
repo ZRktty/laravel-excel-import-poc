@@ -24,3 +24,7 @@ Route::get('/attach-category-to-product/{productId}/{categoryId}', [DevControlle
 
 //route to import
 Route::post('/import', [DevController::class, 'import']);
+
+Route::get('/phpinfo', function () {
+    return phpinfo();
+});
